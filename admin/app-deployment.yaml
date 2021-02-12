@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: circle-ci-cluster
+  name: production-circle-demo
   labels:
     app: simple-backend
 spec:
