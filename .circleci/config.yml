@@ -5,9 +5,6 @@ jobs:
    steps:
      - checkout
 
-    - run: |
-        echo f06d4bff30be5318288c | docker login --username punktapl --password-stdin
-
      # build the application image
      - run: docker build -t helloworld-gke .
 
