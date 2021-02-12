@@ -4,25 +4,6 @@ orbs:
   gcp-gke: circleci/gcp-gke@0.1.0
   gcr: circleci/gcp-gcr@0.0.2
 jobs:
-  build:
-    description: Install npm
-    # machine option runs your jobs in a dedicated, ephemeral VM that has the following specifications:
-    machine: true
-    steps:
-      - checkout
-  Build-Push-Image-Docker:
-    description: Build and push image to Google Container Registry
-    machine: true
-    steps:
-      - checkout
-      - gcr/gcr-auth
-      - gcr/build-image:
-          image: circle-gke
-          tag: "v2" #Change version number e.g to 'v3' when updating application
-      - gcr/push-image:
-          image: circle-gke
-          tag: "v2" #Change version number e.g to 'v3' when updating application
-    
   deploy:
     description: Deploy application to Google Kubernetes Engine
     machine: true
@@ -36,13 +17,3 @@ jobs:
           deployment: circle-ci-cluster
           container: extended-ascent-272113
           image: gcr.io/extended-ascent-272113/circle-gke:v2 # change version when updating
-workflows:
-  build_update_deploy:
-    jobs:
-      - build
-      - Build-Push-Image-Docker:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - Build-Push-Image-Docker
