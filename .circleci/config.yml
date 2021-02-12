@@ -35,7 +35,7 @@ jobs:
       - gcp-gke/rollout-image:
           deployment: circle-ci-cluster
           container: extended-ascent-272113
-          image: gcr.io/circle-ci-demo/circle-gke:v2 # change version when updating
+          image: gcr.io/extended-ascent-272113/circle-gke:v2 # change version when updating
 workflows:
   build_update_deploy:
     jobs:
